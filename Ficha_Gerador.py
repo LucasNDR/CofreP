@@ -163,7 +163,7 @@ while True:
 
 
 DanoCausado_Player = (random.randint(1, DadoDanoPlayer)) + forcabonus
-
+#n sei como melhorar isso
 def DanoParaInimigo1():
     pvatualinimigo = pvmaxinimigo - DanoCausado_Player
 
