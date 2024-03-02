@@ -1,6 +1,8 @@
 import random
 import time
 
+#só um teste
+
 atributos = []
 lista_habilidades = []
 pvmaxplayer = 0
