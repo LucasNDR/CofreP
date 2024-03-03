@@ -12,6 +12,7 @@ lista_raca = ['Anão', 'Elfo', 'Humano', 'Orc']
 lista_classe = ['Bárbaro', 'Arcanista', 'Cavaleiro', 'Clérigo', 'Druida', 'Inventor', 'Guerreiro']
 lista_magias_arc = [['1- Misseis Mágicos'], ['2- Armadura Arcana'], ['3- Cone de Chamas'], ['4- Cura Arcana'], ['5- Ataque Certeiro'], ['6- Arma Mágica'], ['7- Toque Vampírico']]
 lista_magias_div = [['1- Curar Ferimentos'], ['2- Manto da Fé'], ['3- Arma Espiritual'], ['4- Riso Incrontrolável'], ['5- Bênção'], ['6- Aparência Divina']]
+lista_magias_nat = [['1- Armadura Arbórea'], ['2- Arma Natural'], ['3- Controlar Plantas'], ['4- Curar Ferimentos'], ['5- Orientação dos Ermos'], ['6- Buraco de coelho'], ['7- '], ['']]
 
 while True:
 
@@ -174,6 +175,7 @@ while True:
         pm = 0
         break
     
+
     elif numescolhaclass == 3:
         print("Você recebe as habilidades: 'Devoção', 'Magias', e 'Fé Esmagadora'.")
         Devocao = str("Devoção: Você recebe uma habilidade especial vinda da sua fé, mas precisa seguir as Obrigações&Restrições da sua igreja.")
@@ -207,8 +209,17 @@ while True:
         break
 
     elif numescolhaclass == 4:
-        print("katchau")
-
+        print("Você recebe as habilidades: 'Forma Selvagem', 'Conhecimento dos ermos' e 'Magias'.")
+        Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
+        Forma_selvagem = str("Você pode se transformar em uma criatura (animal ou monstro), ganhando atributos relativos a ela.")
+        Conhecimento_Ermos = str("Você recebe bônus em quaisquer testes realizados em ambientes selvagens.")
+        lista_habilidades = [[Forma_selvagem], [Magias], [Conhecimento_Ermos]]
+        pv = func.pv_calculo(16, conbonus, 0)
+        pm = func.pm_calculo(4, sabbonus)
+        defesa = func.defesa_calculo(10, dexbonus, 0, int(nível / 2), 0)
+        for lista_magia_vert in lista_magias_nat:
+            for item in lista_magia_vert:
+                print("[", item, "] ")
         break
 
 
@@ -230,6 +241,12 @@ if pjclasse == "arcanista":
     for Grimorio_Anotado_Vert in Grimorio_Anotado:
             for magiasgr in Grimorio_Anotado_Vert:
                 print("[", magiasgr, "] ")
+if pjclasse == "clérigo":
+    print("Seus conhecimentos religiosos lhe concederam as seguintes magias:")
+    for biblia_Anotada_Vert in biblia_anotada:
+            for magiasgr in biblia_Anotada_Vert:
+                print("[", magiasgr, "] ")
+
 time.sleep(10)
 print("\n")
 print("a")
