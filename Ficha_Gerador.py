@@ -100,6 +100,7 @@ while True:
     pjclasse = classeec.lower()
     time.sleep(1)
     print("Certo! Sua classe será", pjclasse)
+    
     #toda essa sequência das classes pode melhorar
     if pjclasse == "bárbaro":
         print("Você recebe as habilidades: 'Fúria', 'Vitalidade Bárbara' e RD 1.")
@@ -149,16 +150,29 @@ while True:
         for Grimorio_Anotado_Vert in Grimorio_Anotado:
             for magiasgr in Grimorio_Anotado_Vert:
                 print("[", magiasgr, "] ")
-        
+        time.sleep(5)
         break
     elif pjclasse == "cavaleiro":
         print("Você recebe as habilidades: 'Código de Honra', 'Combatente Escolático' e Redução de Dano 1")
-        CodHonra = str("Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
-        ComEsco = str("Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
+        CodHonra = str("Código de Honra: Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
+        ComEsco = str("Combatente Escolático: Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
         ReDa = str("Redução de dano: Você ignora uma quantidade X de dano de qualquer tipo.")
         lista_habilidades = [[CodHonra], [ComEsco], [ReDa]]
         pv = 20 + (conbonus)
         defesa = 10 + int(dexbonus + (nível / 2))
+        break
+    
+    elif pjclasse == "clérigo":
+        print("Você recebe as habilidades: 'Devoção', 'Magias', e 'Fé Esmagadora'.")
+        Devocao = str("Devoção: Você recebe uma habilidade especial vinda da sua fé, mas precisa seguir as Obrigações&Restrições da sua igreja.")
+        Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
+        FeEsmag = str("Fé Esmagadora: Você recebe um bônus contra criaturas que sejam devotas de outro deus. Além disso, soma sua sabedoria na sua defesa.")
+        lista_habilidades = [[Devocao], [Magias], [FeEsmag]]
+        pv = 16 + (conbonus)
+        pm = 4 + (sabbonus)
+        defesa = 10 + int(dexbonus + sabbonus + (nível / 2))
+    elif pjclasse == "druida":
+        print("katchau")
 
 
 
