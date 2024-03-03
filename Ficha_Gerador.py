@@ -1,17 +1,33 @@
 import random
 import time
 
+
 atributos = []
 lista_habilidades = []
-pv = pm = defesa = 0
+pvmaxplayer = 0
+pvatualplayer = 0
+pm = 0
+defesa = 0
 nível = 1
+xp = 0
+DadoDanoPlayer = 6
+pmgastos = 0
+pmatual = pm - pmgastos 
 
+
+DadoDanoIni = 6
+pvmaxinimigo = 0
+pvatualinimigo = 0
+
+
+forcainimigo = 0
+
+DanoInimigo = (random.randint(1, DadoDanoIni)) + forcainimigo
 
 
 lista_raca = ['Anão', 'Elfo', 'Humano', 'Orc']
 lista_classe = ['Bárbaro', 'Arcanista', 'Cavaleiro', 'Clérigo', 'Druida', 'Inventor', 'Guerreiro']
-lista_magias_arc = [['1- Misseis Mágicos'], ['2- Armadura Arcana'], ['3- Cone de Chamas'], ['4- Cura Arcana'], ['5- Ataque Certeiro'], ['6- Arma Mágica'], ['7- Toque Vampírico']]
-lista_magias_div = [['1- Curar Ferimentos'], ['2- Manto da Fé'], ['3- Arma Espiritual'], ['4- Riso Incrontrolável'], ['5- Bênção'], ['6- Aparência Divina']]
+lista_magias = [['1- Misseis Mágicos'], ['2- Armadura Arcana'], ['3- Cone de Chamas'], ['4- Cura Arcana'], ['5- Ataque Certeiro'], ['6- Arma Mágica'], ['7- Toque Vampírico']]
 
 while True:
     print(lista_raca)
@@ -48,7 +64,6 @@ if resposta_raca in "Ss":
     intel = atributos[3]
     sab = atributos[4]
     car = atributos[5]
-    
     #isso pode com certeza pode melhorar
     if pj_raca == "anão":
         forcabonus = int(((forca + 2) - 10) / 2)
@@ -86,7 +101,6 @@ while True:
     pjclasse = classeec.lower()
     time.sleep(1)
     print("Certo! Sua classe será", pjclasse)
-    
     #toda essa sequência das classes pode melhorar
     if pjclasse == "bárbaro":
         print("Você recebe as habilidades: 'Fúria', 'Vitalidade Bárbara' e RD 1.")
@@ -110,7 +124,7 @@ while True:
         pm = 6 + (intbonus)
         time.sleep(5)
         print("Escolha 3 dentre as seguintes magias.")
-        for lista_magia_vert in lista_magias_arc:
+        for lista_magia_vert in lista_magias:
             for item in lista_magia_vert:
                 print("[", item, "] ")
         print("Digite o número da magia a escolher e aperte enter.")
@@ -136,53 +150,32 @@ while True:
         for Grimorio_Anotado_Vert in Grimorio_Anotado:
             for magiasgr in Grimorio_Anotado_Vert:
                 print("[", magiasgr, "] ")
-        time.sleep(5)
+        
         break
     elif pjclasse == "cavaleiro":
         print("Você recebe as habilidades: 'Código de Honra', 'Combatente Escolático' e Redução de Dano 1")
-        CodHonra = str("Código de Honra: Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
-        ComEsco = str("Combatente Escolático: Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
+        CodHonra = str("Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
+        ComEsco = str("Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
         ReDa = str("Redução de dano: Você ignora uma quantidade X de dano de qualquer tipo.")
         lista_habilidades = [[CodHonra], [ComEsco], [ReDa]]
         pv = 20 + (conbonus)
         defesa = 10 + int(dexbonus + (nível / 2))
-        break
-    
-    elif pjclasse == "clérigo":
-        print("Você recebe as habilidades: 'Devoção', 'Magias', e 'Fé Esmagadora'.")
-        Devocao = str("Devoção: Você recebe uma habilidade especial vinda da sua fé, mas precisa seguir as Obrigações&Restrições da sua igreja.")
-        Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
-        FeEsmag = str("Fé Esmagadora: Você recebe um bônus contra criaturas que sejam devotas de outro deus. Além disso, soma sua sabedoria na sua defesa.")
-        lista_habilidades = [[Devocao], [Magias], [FeEsmag]]
-        biblia_anotada = []
-        pv = 16 + (conbonus)
-        pm = 4 + (sabbonus)
-        defesa = 10 + int(dexbonus + sabbonus + (nível / 2))
-        for lista_magia_vert in lista_magias_div:
-            for item in lista_magia_vert:
-                print("[", item, "] ")
-        print("Digite o número da magia a escolher e aperte enter. (Escolha três.)")
-        for i in range(3):
-            esc_mag = input()
-            if esc_mag == str(1):
-                biblia_anotada.append(['Curar Ferimentos: Cura 2d8+2 pontos de vida (Custo: 1PM)'])
-            elif esc_mag == str(2):
-                biblia_anotada.append(['Manto da Fé: Soma seu nível de clérigo na defesa do alvo da magia. (Custo: 1PM)'])
-            elif esc_mag == str(3):
-                biblia_anotada.append(['Arma Espiritual: Conjura uma arma a sua escolha para usar em combate. (Custo: 1PM)'])
-            elif esc_mag == str(4):
-                biblia_anotada.append(['Riso Incrontrolável: O alvo precisa ser bem sucedido em um teste de vontade, ou perderá o turno rindo. (Custo: 2PM)'])
-            elif esc_mag == str(5):
-                biblia_anotada.append(['Benção: O alvo da magia pode somar seu bônus de sabedoria em quaisquer testes pela cena. (Custo: 4PM)'])
-            elif esc_mag == str(6):
-                biblia_anotada.append(['Aparência Divina: O alvo da magia recebe +2 no bônus de carisma pelo dia. (Custo: 2PM)'])
-            else:
-                print("Esta não é uma magia valida. Digite corretamente ou escolha outra.")
-        break
 
-    elif pjclasse == "druida":
-        print("katchau")
 
+
+DanoCausado_Player = (random.randint(1, DadoDanoPlayer)) + forcabonus
+#n sei como melhorar isso
+def DanoParaInimigo1():
+    pvatualinimigo = pvmaxinimigo - DanoCausado_Player
+
+def DanoParaInimigo2():
+    pvatualinimigo = pvatualinimigo - DanoCausado_Player
+
+def DanoParaPlayer1():
+    pvatualplayer = pvmaxplayer - DanoInimigo
+
+def DanoParaPlayer2():
+    pvatualplayer = pvatualplayer - DanoInimigo
 
 #Mostra os status do personagem e as habilidades 
 print("\n")
@@ -205,3 +198,27 @@ time.sleep(10)
 print("\n")
 print("a")
 acao = input()  
+
+def ficha():
+    print("\n")
+    print("Seus atributos:", atributosbonus)
+    print("Pontos de Vida:", pv,"; Sua defesa:", defesa, "; Seus Pontos de Mana:", pm, "; Nível:", nível)
+    print("PVs Atuais:", pvatualplayer,"; PMs Atuais:", pm)
+    print("Sua Classe:", pjclasse,)
+    print("Sua raça:", pj_raca)
+    print("\n")
+    if pjclasse == "arcanista":
+        print("Seu grimorio possui as seguintes magias:")
+        for Grimorio_Anotado_Vert in Grimorio_Anotado:
+            for magiasgr in Grimorio_Anotado_Vert:
+                print("[", magiasgr, "] ")
+    print("\n")
+    print("Suas Habilidades:")
+    for list_hab_Vert in lista_habilidades:
+	    for item in list_hab_Vert:
+	        print("[", item, "] ")
+print("\n")
+
+
+if acao == "ficha":
+    ficha()
