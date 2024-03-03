@@ -3,13 +3,9 @@ import time
 
 atributos = []
 lista_habilidades = []
-pvmaxplayer = pvatualplayer = pm = defesa = xp = pmgastos = pvmaxinimigo = pvatualinimigo = forcainimigo = 0
+pv = pm = defesa = 0
 nível = 1
-DadoDanoPlayer = 6
-pmatual = pm - pmgastos
-DadoDanoIni = 6
 
-DanoInimigo = (random.randint(1, DadoDanoIni)) + forcainimigo
 
 
 lista_raca = ['Anão', 'Elfo', 'Humano', 'Orc']
@@ -187,21 +183,6 @@ while True:
     elif pjclasse == "druida":
         print("katchau")
 
-
-
-DanoCausado_Player = (random.randint(1, DadoDanoPlayer)) + forcabonus
-#n sei como melhorar isso
-def DanoParaInimigo1():
-    pvatualinimigo = pvmaxinimigo - DanoCausado_Player
-
-def DanoParaInimigo2():
-    pvatualinimigo = pvatualinimigo - DanoCausado_Player
-
-def DanoParaPlayer1():
-    pvatualplayer = pvmaxplayer - DanoInimigo
-
-def DanoParaPlayer2():
-    pvatualplayer = pvatualplayer - DanoInimigo
 
 #Mostra os status do personagem e as habilidades 
 print("\n")
