@@ -12,7 +12,7 @@ lista_raca = ['Anão', 'Elfo', 'Humano', 'Orc']
 lista_classe = ['Bárbaro', 'Arcanista', 'Cavaleiro', 'Clérigo', 'Druida', 'Inventor', 'Guerreiro']
 lista_magias_arc = [['1- Misseis Mágicos'], ['2- Armadura Arcana'], ['3- Cone de Chamas'], ['4- Cura Arcana'], ['5- Ataque Certeiro'], ['6- Arma Mágica'], ['7- Toque Vampírico']]
 lista_magias_div = [['1- Curar Ferimentos'], ['2- Manto da Fé'], ['3- Arma Espiritual'], ['4- Riso Incrontrolável'], ['5- Bênção'], ['6- Aparência Divina']]
-lista_magias_nat = [['1- Armadura Arbórea'], ['2- Arma Natural'], ['3- Controlar Plantas'], ['4- Curar Ferimentos'], ['5- Orientação dos Ermos'], ['6- Buraco de coelho'], ['7- '], ['']]
+lista_magias_nat = [['1- Armadura Arbórea'], ['2- Arma Natural'], ['3- Controlar Plantas'], ['4- Curar Ferimentos'], ['5- Orientação dos Ermos'], ['6- Buraco de coelho'], ['7- Decomposição'], ['8- Chicote de vinhas']]
 
 while True:
 
@@ -20,7 +20,7 @@ while True:
         print(f'{pj_raca + 1} - {lista_raca[pj_raca]}')
 
     time.sleep(1)
-    numescolharaca = int(input('Digite o numero da classe: ')) - 1
+    numescolharaca = int(input('Digite o numero da raça: ')) - 1
     if numescolharaca < 0:
         numescolharaca = 10000
     time.sleep(1)
@@ -105,7 +105,7 @@ while True:
             numescolhaclass = 10000
         time.sleep(1)
         if numescolharaca < len(lista_raca):
-            print(f'certo, sua classe sera {lista_classe[numescolhaclass]}')
+            print(f'Certo, sua classe será {lista_classe[numescolhaclass]}')
             if resposta_raca in "Ss":
                 break
         else:
@@ -217,36 +217,60 @@ while True:
         pv = func.pv_calculo(16, conbonus, 0)
         pm = func.pm_calculo(4, sabbonus)
         defesa = func.defesa_calculo(10, dexbonus, 0, int(nível / 2), 0)
+        mags_nat = []
+        print("Escolha três dentre as seguintes magias:")
         for lista_magia_vert in lista_magias_nat:
             for item in lista_magia_vert:
                 print("[", item, "] ")
+        print("Digite o número da magia a escolher e aperte enter.")
+        for i in range(3):
+            esc_mag = input()
+            if esc_mag == str(1):
+                mags_nat.append(['Armadura Arbórea: Soma sua sabedoria à sua defesa. (Custo: 1PM)'])
+            elif esc_mag == str(2):
+                mags_nat.append(['Arma Natural: Cria uma arma a partir de pedras e galhos. Os testes com a arma criada magia recebem +2 (Ataque, dano, manobras etc.) (Custo: 2PM)'])
+            elif esc_mag == str(3):
+                mags_nat.append(['Controlar Plantas: Modifica o formato das plantas ao redor de acordo com o que você quiser. (Custo: 1PM)'])
+            elif esc_mag == str(4):
+                mags_nat.append(['Curar Ferimentos: Cura 2d8+2 pontos de vida (Custo: 1PM)'])
+            elif esc_mag == str(5):
+                mags_nat.append(['Orientação dos Ermos: Soma sua sabedoria em testes para se localizar em ambientes selvagens. (Custo: 1PM)'])
+            elif esc_mag == str(6):
+                mags_nat.append(['Buraco de Coelho: Cria um local seguro para um descanso de uma noite. (Custo: 2PM)'])
+            elif esc_mag == str(7):
+                mags_nat.append(['Decomposição: Causa 2d6 de dano por nível de personagem. (Custo: 3PM)'])
+            elif esc_mag == str(8):
+                mags_nat.append(['Chicote de Vinhas:  Cada chicote causa 2d6 de dano por nível de personagem. Você invoca uma quantidade de chicotes igual a seus bônus de sabedoria. (Custo: 3PM)'])
+            else:
+                print("Esta não é uma magia valida. Digite corretamente ou escolha outra.")
         break
 
 
 
 #Mostra os status do personagem e as habilidades 
-print("\n")
-print("Seus atributos:", atributosbonus)
+print("\n", "Seus atributos:", atributosbonus)
 print("Pontos de Vida:", pv,"; Sua defesa:", defesa, "; Seus Pontos de Mana:", pm, "; Nível:", nível)
-print("Sua Classe:", pjclasse,)
-print("Sua raça:", pj_raca)
-print("\n")
+print("Sua Classe:", lista_classe[numescolhaclass])
+print("Sua raça:", lista_raca[numescolharaca], "\n" )
 print("Suas Habilidades:")
 for list_hab_Vert in lista_habilidades:
 	for item in list_hab_Vert:
 	   print("[", item, "] ")
-print("\n")
-if pjclasse == "arcanista":
-    print("Seu grimorio possui as seguintes magias:")
+if numescolhaclass == 1:
+    print("\n", "Seu grimorio possui as seguintes magias:")
     for Grimorio_Anotado_Vert in Grimorio_Anotado:
             for magiasgr in Grimorio_Anotado_Vert:
                 print("[", magiasgr, "] ")
-if pjclasse == "clérigo":
-    print("Seus conhecimentos religiosos lhe concederam as seguintes magias:")
+if numescolhaclass == 3:
+    print("\n", "Seus conhecimentos religiosos lhe concederam as seguintes magias:")
     for biblia_Anotada_Vert in biblia_anotada:
             for magiasgr in biblia_Anotada_Vert:
                 print("[", magiasgr, "] ")
-
+if numescolhaclass == 4:
+    print("\n", "Seus conhecimentos dos ermos lhe conectaram com as energias naturais e lhe permitem lançar as seguintes magias:")
+    for magsnat_Vert in mags_nat:
+            for magiasgr in magsnat_Vert:
+                print("[", magiasgr, "] ")
 time.sleep(10)
 print("\n")
 print("a")
