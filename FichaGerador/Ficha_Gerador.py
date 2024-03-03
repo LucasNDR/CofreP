@@ -15,31 +15,46 @@ lista_magias_div = [['1- Curar Ferimentos'], ['2- Manto da Fé'], ['3- Arma Espi
 lista_magias_nat = [['1- Armadura Arbórea'], ['2- Arma Natural'], ['3- Controlar Plantas'], ['4- Curar Ferimentos'], ['5- Orientação dos Ermos'], ['6- Buraco de coelho'], ['7- '], ['']]
 
 while True:
-    print(lista_raca)
-    print("Qual a sua raça?")
-    racaec = str(input())
-    pj_raca = racaec.lower()
+
+    for pj_raca in range(len(lista_raca)):
+        print(f'{pj_raca + 1} - {lista_raca[pj_raca]}')
+
+    time.sleep(1)
+    numescolharaca = int(input('Digite o numero da classe: ')) - 1
+    if numescolharaca < 0:
+        numescolharaca = 10000
     time.sleep(1)
 
 #Confirmação com o usuário
-    print("Certo! Sua raça será", pj_raca)
-    if pj_raca == "anão":
-        print("Você receberá +4 em constituição e +2 em força.")
-    elif pj_raca == "elfo":
-        print("Você receberá +4 em destreza e +2 em carisma.")
-    elif pj_raca == "humano":
-        print("Você receberá +2 em três atributos a sua escolha.")
-    elif pj_raca == "orc":
-        print("Você receberá +4 em força, +2 em constituição e -2 em carisma.")
+    if numescolharaca < len(lista_raca):
+        print("\nCerto! Sua raça será", lista_raca[numescolharaca])
+        if numescolharaca == 0:
+            print("Você receberá +4 em constituição e +2 em força.")
+        elif numescolharaca == 1:
+            print("Você receberá +4 em destreza e +2 em carisma.")
+        elif numescolharaca == 2:
+            print("Você receberá +2 em três atributos a sua escolha.")
+        elif numescolharaca == 3 and numescolharaca != -1:
+            print("Você receberá +4 em força, +2 em constituição e -2 em carisma.")
+    else:
+        print('\nesse numero não consta na lista\n')
+        continue
     time.sleep(1)
-    
+
     resposta_raca = str(input("Você tem certeza da sua escolha? Essa escolha não pode ser desfeita! (S/N)"))
     if resposta_raca in "Ss":
         break
+    elif resposta_raca in "Nn":
+        time.sleep(1)
+        continue
+    else:
+        time.sleep(1)
+        print('\nTente denovo\n')
+        time.sleep(1)
 
 #Gera os atributos do personagem
 if resposta_raca in "Ss":
-    print("Confirmado! Você será um", pj_raca)
+    print("Confirmado! Você será um", lista_raca[numescolharaca])
     for i in range (6):
         atributos.append(random.randint(6, 20))
     print("Estes são seus atributos:")
@@ -51,7 +66,7 @@ if resposta_raca in "Ss":
     car = atributos[5]
     
     #isso pode com certeza pode melhorar
-    if pj_raca == "anão":
+    if numescolharaca == 0:
         forcabonus = int(((forca + 2) - 10) / 2)
         dexbonus = int(((dex) - 10) / 2)
         conbonus = int(((con + 4) - 10) / 2)
@@ -59,7 +74,7 @@ if resposta_raca in "Ss":
         sabbonus = int(((sab) - 10) / 2)
         carbonus = int(((car) - 10) / 2)
         atributosbonus = [forcabonus, dexbonus, conbonus, intbonus, sabbonus, carbonus]
-    elif pj_raca == "elfo":
+    elif numescolharaca == 1:
         forcabonus = int(((forca) - 10) / 2)
         dexbonus = int(((dex + 4) - 10) / 2)
         conbonus = int(((con) - 10) / 2)
@@ -67,7 +82,7 @@ if resposta_raca in "Ss":
         sabbonus = int(((sab) - 10) / 2)
         carbonus = int(((car + 2) - 10) / 2)
         atributosbonus = [forcabonus, dexbonus, conbonus, intbonus, sabbonus, carbonus]
-    elif pj_raca == "orc":
+    elif numescolharaca == 3:
         forcabonus = int(((forca + 4) - 10) / 2)
         dexbonus = int(((dex) - 10) / 2)
         conbonus = int(((con + 2) - 10) / 2)
@@ -80,16 +95,24 @@ time.sleep(5)
 
 #escolha de classe de personagem
 while True:
-    print("Qual sua classe?")
-    time.sleep(1)
-    print(lista_classe)
-    classeec = str(input())
-    pjclasse = classeec.lower()
-    time.sleep(1)
-    print("Certo! Sua classe será", pjclasse)
-    
+    while True:
+        for pjclasse in range(len(lista_classe)):
+            print(f'{pjclasse + 1} - {lista_classe[pjclasse]}')
+
+        time.sleep(1)
+        numescolhaclass = int(input('Digite o numero da classe: ')) - 1
+        if numescolhaclass < 0:
+            numescolhaclass = 10000
+        time.sleep(1)
+        if numescolharaca < len(lista_raca):
+            print(f'certo, sua classe sera {lista_classe[numescolhaclass]}')
+            if resposta_raca in "Ss":
+                break
+        else:
+            print('tente denovo')
+        
     #toda essa sequência das classes pode melhorar
-    if pjclasse == "bárbaro":
+    if numescolhaclass == 0:
         print("Você recebe as habilidades: 'Fúria', 'Vitalidade Bárbara' e RD 1.")
         Fúria = str("Fúria: Você recebe +2 em ataques e dano. Também recebe RD1 cumulativo com outras.")
         VitBarb = str("Vitalidade Barbara: Você soma sua força e constituição nos seus pontos de vida totais e na defesa.")
@@ -100,7 +123,7 @@ while True:
         pm = 0
         time.sleep(5)
         break
-    elif pjclasse == "arcanista":
+    elif numescolhaclass == 1:
         print("Você recebe as habilidades: 'Magias', 'Defesa Arcana' e 'Grimório' onde possui 3 magias anotadas.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
         Grimorio = str("Grimorio: Você pode estudar suas magias anotadas aqui e lança-las. Para estudar, escolha metade das magias que conhece (Arredondado para baixo) e gaste 1 hora de estudo. Você poderá lançar as magias escolhidas livremente até o proximo descanso.")
@@ -141,7 +164,7 @@ while True:
                 print("[", magiasgr, "] ")
         time.sleep(5)
         break
-    elif pjclasse == "cavaleiro":
+    elif numescolhaclass == 2:
         print("Você recebe as habilidades: 'Código de Honra', 'Combatente Escolático' e Redução de Dano 1")
         CodHonra = str("Código de Honra: Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
         ComEsco = str("Combatente Escolático: Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
@@ -152,8 +175,9 @@ while True:
         pm = 0
         break
     
-    elif pjclasse == "clérigo":
-        print("Você recebe as habilidades: 'Devoção', 'Magias' e 'Fé Esmagadora'.")
+
+    elif numescolhaclass == 3:
+        print("Você recebe as habilidades: 'Devoção', 'Magias', e 'Fé Esmagadora'.")
         Devocao = str("Devoção: Você recebe uma habilidade especial vinda da sua fé, mas precisa seguir as Obrigações&Restrições da sua igreja.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
         FeEsmag = str("Fé Esmagadora: Você recebe um bônus contra criaturas que sejam devotas de outro deus. Além disso, soma sua sabedoria na sua defesa.")
@@ -184,7 +208,7 @@ while True:
                 print("Esta não é uma magia valida. Digite corretamente ou escolha outra.")
         break
 
-    elif pjclasse == "druida":
+    elif numescolhaclass == 4:
         print("Você recebe as habilidades: 'Forma Selvagem', 'Conhecimento dos ermos' e 'Magias'.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
         Forma_selvagem = str("Você pode se transformar em uma criatura (animal ou monstro), ganhando atributos relativos a ela.")
