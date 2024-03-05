@@ -90,6 +90,9 @@ if resposta_raca in "Ss":
         sabbonus = int(((sab) - 10) / 2)
         carbonus = int(((car - 2) - 10) / 2)
         atributosbonus = [forcabonus, dexbonus, conbonus, intbonus, sabbonus, carbonus]
+    elif numescolharaca == 2:
+        #futuro código da raça humano
+        print("Ainda não feita, reinicie o código por favor.")
 print(atributosbonus)
 time.sleep(5)
 
@@ -104,7 +107,7 @@ while True:
         if numescolhaclass < 0:
             numescolhaclass = 10000
         time.sleep(1)
-        if numescolharaca < len(lista_raca):
+        if numescolhaclass < len(lista_raca):
             print(f'Certo, sua classe será {lista_classe[numescolhaclass]}')
             if resposta_raca in "Ss":
                 break
@@ -113,6 +116,7 @@ while True:
         
     #toda essa sequência das classes pode melhorar
     if numescolhaclass == 0:
+        #Classe: Bárbaro
         print("Você recebe as habilidades: 'Fúria', 'Vitalidade Bárbara' e RD 1.")
         Fúria = str("Fúria: Você recebe +2 em ataques e dano. Também recebe RD1 cumulativo com outras.")
         VitBarb = str("Vitalidade Barbara: Você soma sua força e constituição nos seus pontos de vida totais e na defesa.")
@@ -124,6 +128,7 @@ while True:
         time.sleep(5)
         break
     elif numescolhaclass == 1:
+        #Classe: Arcanista
         print("Você recebe as habilidades: 'Magias', 'Defesa Arcana' e 'Grimório' onde possui 3 magias anotadas.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
         Grimorio = str("Grimorio: Você pode estudar suas magias anotadas aqui e lança-las. Para estudar, escolha metade das magias que conhece (Arredondado para baixo) e gaste 1 hora de estudo. Você poderá lançar as magias escolhidas livremente até o proximo descanso.")
@@ -165,6 +170,7 @@ while True:
         time.sleep(5)
         break
     elif numescolhaclass == 2:
+        #Classe: Cavaleiro
         print("Você recebe as habilidades: 'Código de Honra', 'Combatente Escolático' e Redução de Dano 1")
         CodHonra = str("Código de Honra: Você segue um código de ética restrito. Você não pode se beneficiar das seguintes condições:'Caído', 'Flanqueado', 'desprevenido'; Em compensação, pode causar +4 de dano contra inimigos caso tenha sido afetado por uma condição como essas neste combate.")
         ComEsco = str("Combatente Escolático: Você recebe uma habilidade de combate pelo seu treinamento especial. Você também pode usar armaduras pesadas.")
@@ -174,9 +180,8 @@ while True:
         defesa = func.defesa_calculo(10, dexbonus, int(nível / 2), 0, 0) 
         pm = 0
         break
-    
-
     elif numescolhaclass == 3:
+        #Classe: Clérigo
         print("Você recebe as habilidades: 'Devoção', 'Magias', e 'Fé Esmagadora'.")
         Devocao = str("Devoção: Você recebe uma habilidade especial vinda da sua fé, mas precisa seguir as Obrigações&Restrições da sua igreja.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
@@ -207,8 +212,8 @@ while True:
             else:
                 print("Esta não é uma magia valida. Digite corretamente ou escolha outra.")
         break
-
     elif numescolhaclass == 4:
+        #Classe: Druida
         print("Você recebe as habilidades: 'Forma Selvagem', 'Conhecimento dos ermos' e 'Magias'.")
         Magias = str("Magias: Você pode lançar magias, arcanas ou divinas, pelo custo de PMs. Você pode lançar magias mais fortes a cada 4 níveis e aprende uma nova a cada nível de personagem.")
         Forma_selvagem = str("Você pode se transformar em uma criatura (animal ou monstro), ganhando atributos relativos a ela.")
@@ -244,11 +249,24 @@ while True:
             else:
                 print("Esta não é uma magia valida. Digite corretamente ou escolha outra.")
         break
+    elif numescolhaclass == 5:
+        #Classe: Inventor
+        print("\n", "Você recebe as seguintes habiliadades: 'Invenção Maluca', 'Arma Especial', 'Simulação Realista' e 'Lógica Previsiva'.")
+        InvMaluca = str("Invenção Maluca: Você pode criar um item que irá gerar um efeito a sua escolha entre os seguintes: 'Cura', 'Dano' ou 'Condição'.")
+        ArmaEsp = str("Arma Especial: Você pode criar um item com até uma modificação especial. Com tal item, seus testes de ataque recebem +2 pela sua familiaridade com o item.")
+        SimulReal = str("Simulação Realista: Você pode 'simular' (Termo chique para lançar) três magias entre as listas de magias de Arcanista e Clérigo. Você não precisa escolher as magias que poderá lançar, mas deve prepara-las antecipadamente (No começo do dia).")
+        LogPrev = str("Lógica Previsiva: Você soma sua Inteligência a sua defesa.")
+        lista_habilidades = [[ArmaEsp], [InvMaluca], [LogPrev], [SimulReal]]
+        pv = func.pv_calculo(12, conbonus, 0)
+        pm = func.pm_calculo(4, intbonus)
+        defesa = func.defesa_calculo(10, dexbonus, intbonus, (nível / 2), 0)
+        break
+
 
 
 
 #Mostra os status do personagem e as habilidades 
-print("\n", "Seus atributos:", atributosbonus)
+print("\n","Seus atributos:", atributosbonus)
 print("Pontos de Vida:", pv,"; Sua defesa:", defesa, "; Seus Pontos de Mana:", pm, "; Nível:", nível)
 print("Sua Classe:", lista_classe[numescolhaclass])
 print("Sua raça:", lista_raca[numescolharaca], "\n" )
@@ -271,7 +289,4 @@ if numescolhaclass == 4:
     for magsnat_Vert in mags_nat:
             for magiasgr in magsnat_Vert:
                 print("[", magiasgr, "] ")
-time.sleep(10)
-print("\n")
-print("a")
-acao = input()  
+time.sleep(10) 
