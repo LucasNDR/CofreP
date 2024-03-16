@@ -107,7 +107,7 @@ while True:
         if numescolhaclass < 0:
             numescolhaclass = 10000
         time.sleep(1)
-        if numescolhaclass < len(lista_raca):
+        if numescolhaclass < len(lista_classe):
             print(f'Certo, sua classe será {lista_classe[numescolhaclass]}')
             if resposta_raca in "Ss":
                 break

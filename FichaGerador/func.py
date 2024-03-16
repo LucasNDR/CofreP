@@ -1,5 +1,6 @@
 pv = defesa = pm = 0
 
+
 def pv_calculo(a, b, c):
     pv = a + b + c
     return pv
